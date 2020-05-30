@@ -83,15 +83,15 @@ resource "aws_instance" "worker-2" {
   }
 }
 
-resource "aws_instance" "worker-3" {
-  ami                    = join("", data.aws_ami.default.*.image_id)
-  instance_type          = var.instance_type_worker
-  key_name               = aws_key_pair.default.id
-  user_data              = file("${var.bootstrap_path}")
-  vpc_security_group_ids = [aws_security_group.default.id]
-  subnet_id              = aws_subnet.default.id
+# resource "aws_instance" "worker-3" {
+#   ami                    = join("", data.aws_ami.default.*.image_id)
+#   instance_type          = var.instance_type_worker
+#   key_name               = aws_key_pair.default.id
+#   user_data              = file("${var.bootstrap_path}")
+#   vpc_security_group_ids = [aws_security_group.default.id]
+#   subnet_id              = aws_subnet.default.id
 
-  tags = {
-    Name = "workers"
-  }
-}
+#   tags = {
+#     Name = "workers"
+#   }
+# }
