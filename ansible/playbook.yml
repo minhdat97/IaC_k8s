@@ -1,0 +1,19 @@
+- hosts: tag_Name_master
+  become: true
+  become_method: sudo
+  gather_facts: no
+  tasks:
+    - name: log into docker hub registry
+      docker_login:
+        email: "minhdat.tran97@gmail.com"
+        username: "minhdat97"
+        password: "datcom97vn"
+        reauthorize: yes
+    - name: ensure a container is running
+      docker_container:
+        name: portfolio
+        state: started
+        image: "minhdat97/portfolio"
+        pull: true
+        ports:
+          - "3000:3000"
